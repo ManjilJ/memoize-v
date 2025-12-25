@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang=en><meta charset=UTF-8><title>Memoization Visualizer</title><link rel=stylesheet href=/memoize-v/Visualizer_Memoize.29f72e2a.css><link rel=stylesheet href=/memoize-v/Visualizer_Memoize.28b66541.css><body>
+    <h1>Memoization Visualizer</h1>
+
+    <div class=controls-container>
+      <label>Argument (n):</label>
+      <input type=number id=arg-input value=6 min=0 max=1477>
+      <button id=run-btn>Run Memoized Fibonacci</button>
+      <button id=clear-btn>Reset (Clear Object)</button>
+    </div>
+
+    <div class=app-wrapper>
+      <div class=main-layout>
+        
+        <div class=box id=check-box>
+          <h2>1. Checking</h2>
+          <div class=shape-inner>
+            Object has (<span id=check-n>n</span>)?
+          </div>
+        </div>
+
+        
+        <div class=box id=heavy-func-box>
+          <h2>2. Heavy Function</h2>
+          <div id=ProcessingMsg>
+            <span>...</span>
+          </div>
+          <div class=processor-shape id=processor>
+            Fib(<span id=heavy-n>n</span>)
+          </div>
+        </div>
+
+        
+        <div class=box id=cache-box>
+          <h2>Object (Cache)</h2>
+          <div class=object-shape id=cache-scroll-area>
+            <span class=bracket>{</span>
+            <div id=cache-contents></div>
+            <span class=bracket>}</span>
+          </div>
+        </div>
+
+        
+        <div class=box id=return-box>
+          <h2>3. Result Return</h2>
+          <div class=return-shape id=return-val>---</div>
+        </div>
+      </div>
+
+      
+      <div class=code-sidebar>
+        <div id=line-highlighter></div>
+        <pre class=language-js><code id=code-block>const memoizedFib = (() =&gt; {
+  const cache = {};
+
+  return function(n) {
+    if (n in cache) {
+      return cache[n];
+    }
+
+    const result = fib(n);
+    cache[n] = result;
+    return result;
+  };
+
+  // Internal fib ensuring both base cases (0, 1) are cached
+  function fib(n) {
+    if (n in cache) return cache[n];
+    if (n === 0) return (cache[0] = 0);
+    if (n === 1) {
+      cache[0] = 0; 
+      return (cache[1] = 1);
+    }
+
+    cache[n] = fib(n - 1) + fib(n - 2);
+    return cache[n];
+  }
+})();</code></pre>
+      </div>
+    </div>
+
+    <svg id=svg-layer class=animation-svg-container />
+
+    <script type=module src=/memoize-v/Visualizer_Memoize.8f2e09c8.js></script>
+    <script type=module src=/memoize-v/Visualizer_Memoize.9be76238.js></script>
+  
+
