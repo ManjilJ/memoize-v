@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang=en><meta charset=UTF-8><title>Memoization Visualizer</title><link rel=stylesheet href=/memoize-v/Visualizer_Memoize.29f72e2a.css><link rel=stylesheet href=/memoize-v/Visualizer_Memoize.28b66541.css><body>
+<!DOCTYPE html><html lang=en><meta charset=UTF-8><title>Memoization Visualizer</title><link rel=stylesheet href=/memoize-v/Visualizer_Memoize.29f72e2a.css><link rel=stylesheet href=/memoize-v/Visualizer_Memoize.bbdee0f9.css><body>
     <h1>Memoization Visualizer</h1>
 
     <div class=controls-container>
@@ -6,11 +6,13 @@
       <input type=number id=arg-input value=6 min=0 max=1477>
       <button id=run-btn>Run Memoized Fibonacci</button>
       <button id=clear-btn>Reset (Clear Object)</button>
+      <label style=cursor:pointer;margin-left:10px;font-size:14px>
+        <input type=checkbox id=recursion-toggle checked> Show Recursion Detail
+      </label>
     </div>
 
     <div class=app-wrapper>
       <div class=main-layout>
-        
         <div class=box id=check-box>
           <h2>1. Checking</h2>
           <div class=shape-inner>
@@ -18,18 +20,14 @@
           </div>
         </div>
 
-        
         <div class=box id=heavy-func-box>
           <h2>2. Heavy Function</h2>
-          <div id=ProcessingMsg>
-            <span>...</span>
-          </div>
+          <div id=ProcessingMsg><span></span></div>
           <div class=processor-shape id=processor>
             Fib(<span id=heavy-n>n</span>)
           </div>
         </div>
 
-        
         <div class=box id=cache-box>
           <h2>Object (Cache)</h2>
           <div class=object-shape id=cache-scroll-area>
@@ -39,14 +37,35 @@
           </div>
         </div>
 
-        
         <div class=box id=return-box>
           <h2>3. Result Return</h2>
           <div class=return-shape id=return-val>---</div>
         </div>
+
+        <div class=box id=stack-box>
+          <h2>Call Stack (Pending)</h2>
+          <div id=stack-container style="background:#f1f2f6;border:1px inset #dcdfe6;border-radius:8px;flex-direction:column-reverse;gap:5px;min-height:150px;padding:10px;display:flex;overflow-y:auto"></div>
+        </div>
+
+        <div class=box id=recursion-details>
+          <h2>Recursion Details</h2>
+          <div id=stack-monitor style=text-align:left;background:#2d3436;border-radius:4px;margin-bottom:10px;padding:10px;font-family:monospace;font-size:13px>
+            <div id=monitor-status style=color:#74b9ff>Standing by...</div>
+            <div id=monitor-action style=color:#ffeaa7;font-weight:700></div>
+          </div>
+          <div style=justify-content:space-around;gap:10px;display:flex>
+            <div id=base-case-box style="border:2px dashed #95a5a6;border-radius:8px;flex:1;padding:10px">
+              Base Case?<br><strong>(n &lt;= 1)</strong>
+            </div>
+            <div id=sum-box style="border:2px dashed #9b59b6;border-radius:8px;flex:1;padding:10px">
+              <div id=sum-title style=color:#7f8c8d;font-size:10px>Summing Logic</div>
+              <span id=left-branch class=branch-slot>fib(n-1)</span> +
+              <span id=right-branch class=branch-slot>fib(n-2)</span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      
       <div class=code-sidebar>
         <div id=line-highlighter></div>
         <pre class=language-js><code id=code-block>const memoizedFib = (() =&gt; {
@@ -79,8 +98,6 @@
     </div>
 
     <svg id=svg-layer class=animation-svg-container />
-
     <script type=module src=/memoize-v/Visualizer_Memoize.8f2e09c8.js></script>
-    <script type=module src=/memoize-v/Visualizer_Memoize.9be76238.js></script>
+    <script type=module src=/memoize-v/Visualizer_Memoize.7a84a8f6.js></script>
   
-
