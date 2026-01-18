@@ -67,8 +67,6 @@ Let's see how it's built:
 
 Shorter snippets of memoized versions of Fibonacci series
 
-Shorter snippets of memoized versions of Fibonacci series
-
 1. Longer version
 ```javascript
 function memoizedFib() {
