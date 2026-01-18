@@ -67,7 +67,9 @@ Let's see how it's built:
 
 Shorter snippets of memoized versions of Fibonacci series
 
-Longer version:
+Shorter snippets of memoized versions of Fibonacci series
+
+1. Longer version
 ```javascript
 function memoizedFib() {
   let cache = {}; // The cache is "closed over" by the inner function
@@ -83,15 +85,16 @@ function memoizedFib() {
   }
 }
 
+2. Uses an arrow function, a ternary operator, and the logical nullish assignment (??=) operator. This stores the cache directly on the function object itself to avoid needing an extra variable or a wrapper function.
 
-3.  Uses an arrow function, a ternary operator, and the logical nullish assignment (??=) operator. This stores the cache directly on the function object itself to avoid needing an extra variable or a wrapper function.
-
+```javascript
 const fib = n => fib[n] ??= n < 2 ? n : fib(n - 1) + fib(n - 2)
-
 
 3. Creates a instance with its own private cache
 
+```javascript
 const memoFib = (c = [0, 1]) => f = n => c[n] ??= f(n - 1) + f(n - 2)
+
 
 
 This pattern is not just a mathematical curiosity; it famously appears in various aspects of nature, from the branching of trees and the arrangement of leaves on a stem to the fruitlets of a pineapple and the flowering of an artichoke.
