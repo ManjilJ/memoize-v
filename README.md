@@ -83,7 +83,7 @@ function memoizedFib() {
 }
 
 
-2.  Uses an arrow function, a ternary operator, and the logical nullish assignment (??=) operator. This stores the cache directly on the function object itself to avoid needing an extra variable or a wrapper function.
+3.  Uses an arrow function, a ternary operator, and the logical nullish assignment (??=) operator. This stores the cache directly on the function object itself to avoid needing an extra variable or a wrapper function.
 
 const fib = n => fib[n] ??= n < 2 ? n : fib(n - 1) + fib(n - 2)
 
