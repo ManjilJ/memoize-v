@@ -64,4 +64,33 @@ Let's see how it's built:
 *   `fib(5) = fib(4) + fib(3)`  => `3 + 2 = 5`
 *   ...and so on.
 
+
+Shorter snippets of memoized versions of Fibonacci series
+
+1. Longer version
+function memoizedFib() {
+  let cache = {}; // The cache is "closed over" by the inner function
+  return function fib(n) {
+    if (n in cache) {
+      return cache[n]; // Return cached result
+    } else {
+      if (n <= 1) return n;
+      // Calculate, store the result in the cache, then return it
+      cache[n] = fib(n - 1) + fib(n - 2);
+      return cache[n];
+    }
+  }
+}
+
+
+2.  Uses an arrow function, a ternary operator, and the logical nullish assignment (??=) operator. This stores the cache directly on the function object itself to avoid needing an extra variable or a wrapper function.
+
+const fib = n => fib[n] ??= n < 2 ? n : fib(n - 1) + fib(n - 2)
+
+
+3. Creates a instance with its own private cache
+
+const memoFib = (c = [0, 1]) => f = n => c[n] ??= f(n - 1) + f(n - 2)
+
+
 This pattern is not just a mathematical curiosity; it famously appears in various aspects of nature, from the branching of trees and the arrangement of leaves on a stem to the fruitlets of a pineapple and the flowering of an artichoke.
